@@ -14,7 +14,7 @@ function randomArrayIndexValue(array) {
 }
 
 function getComputerSelection() {
-  computerChoicesArray = ["rock", "paper", "scissors"];
+  let computerChoicesArray = ["rock", "paper", "scissors"];
 
   computerSelection = randomArrayIndexValue(computerChoicesArray);
   console.log(computerSelection);
@@ -23,7 +23,7 @@ function getComputerSelection() {
 }
 
 function getPlayerChoice() {
-  playerSelection = prompt("Rock, Paper, or Scissors?");
+  let playerSelection = prompt("Rock, Paper, or Scissors?");
 
   while (
     playerSelection.toLowerCase() !== "rock" &&
@@ -38,4 +38,29 @@ function getPlayerChoice() {
   return playerSelection.toLowerCase();
 }
 
-getPlayerChoice();
+function playRound(computerSelection, playerSelection) {
+  playerSelection = getPlayerChoice();
+  computerSelection = getComputerSelection();
+
+  let playerScore = 0;
+  let computerScore = 0;
+  if (playerSelection === computerSelection) {
+    console.log("Tie!");
+  } else if (playerSelection === "rock" && computerSelection === "scissors") {
+    playerScore += 1;
+    console.log(`You get a point! Your score is ${playerScore}.`);
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
+    playerScore += 1;
+    console.log(`You get a point! Your score is ${playerScore}.`);
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    playerScore += 1;
+    console.log(`You get a point! Your score is ${playerScore}.`);
+  } else {
+    console.log.apply(
+      `You lose! ${computerSelection} beats ${playerSelection} `
+    );
+    computerScore += 1;
+  }
+  console.log(`Your score is ${playerScore}`);
+  console.log(`The computer's score is ${computerScore}`);
+}
