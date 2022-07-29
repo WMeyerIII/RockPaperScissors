@@ -42,7 +42,8 @@ function getPlayerChoice() {
 }
 
 function playRound(computerSelection, playerSelection) {
-  playerSelection = getPlayerChoice();
+  // playerSelection = getPlayerChoice();
+  playerSelection = "rock";
   computerSelection = getComputerSelection();
 
   if (playerSelection === computerSelection) {
@@ -52,12 +53,22 @@ function playRound(computerSelection, playerSelection) {
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
-    playerscore++;
+    playerScore++;
     console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
-    console.log(`You get a point!Your score is ${playerScore}.`);
+    console.log(`You get a point! Your score is ${playerScore}.`);
   } else {
     computerScore++;
     console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
     console.log(`Computer wins! Computer's score is ${computerScore}`);
   }
 }
+
+function game() {
+  for (let i = 0; i < 5; i++) {
+    playRound();
+    console.log(playerScore);
+    console.log(computerScore);
+  }
+}
+
+game();
