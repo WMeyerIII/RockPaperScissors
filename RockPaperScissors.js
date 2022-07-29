@@ -20,7 +20,7 @@ function getComputerSelection() {
   let computerChoicesArray = ["rock", "paper", "scissors"];
 
   computerSelection = randomArrayIndexValue(computerChoicesArray);
-  console.log(computerSelection);
+  console.log(`Computer chose: ${computerSelection}`);
 
   return computerSelection;
 }
@@ -59,7 +59,7 @@ function playRound(computerSelection, playerSelection) {
   } else {
     computerScore++;
     console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
-    console.log(`Computer wins! Computer's score is ${computerScore}`);
+    console.log(`Computer gets a point. Computer's score is ${computerScore}`);
   }
 }
 
@@ -76,8 +76,8 @@ function winState(playerScore, computerScore) {
 function game() {
   for (let i = 0; i < 5; i++) {
     playRound();
-    console.log(playerScore);
-    console.log(computerScore);
+    console.log(`Your score is ${playerScore}`);
+    console.log(`Computer score is ${computerScore}`);
   }
   winState(playerScore, computerScore);
 }
