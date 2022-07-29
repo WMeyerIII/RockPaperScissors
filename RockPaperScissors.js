@@ -7,6 +7,9 @@ Get player choice
 
 */
 
+let playerScore = 0;
+let computerScore = 0;
+
 function randomArrayIndexValue(array) {
   let randomIndex = Math.floor(Math.random() * array.length);
   let randomIndexValue = array[randomIndex];
@@ -37,8 +40,6 @@ function getPlayerChoice() {
   console.log(playerSelection);
   return playerSelection.toLowerCase();
 }
-let playerScore = 0;
-let computerScore = 0;
 
 function playRound(computerSelection, playerSelection) {
   playerSelection = getPlayerChoice();
@@ -52,9 +53,7 @@ function playRound(computerSelection, playerSelection) {
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     playerscore++;
-    console.log(
-      `You get a win! ${playerSelection} beats ${computerSelection}.`
-    );
+    console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
     console.log(`You get a point!Your score is ${playerScore}.`);
   } else {
     computerScore++;
