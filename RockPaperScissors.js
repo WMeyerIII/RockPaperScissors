@@ -17,9 +17,25 @@ function getComputerSelection() {
   computerChoicesArray = ["rock", "paper", "scissors"];
 
   computerSelection = randomArrayIndexValue(computerChoicesArray);
-  // console.log(computerSelection);
+  console.log(computerSelection);
 
   return computerSelection;
 }
 
-console.log(getComputerSelection());
+function getPlayerChoice() {
+  playerSelection = prompt("Rock, Paper, or Scissors?");
+
+  while (
+    playerSelection.toLowerCase() !== "rock" &&
+    playerSelection.toLowerCase() !== "paper" &&
+    playerSelection.toLowerCase() !== "scissors"
+  ) {
+    playerSelection = prompt(
+      "Type in your selection: Rock, Paper, or Scissors."
+    );
+  }
+  console.log(playerSelection);
+  return playerSelection.toLowerCase();
+}
+
+getPlayerChoice();
