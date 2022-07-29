@@ -13,6 +13,13 @@ function randomArrayIndexValue(array) {
   return randomIndexValue;
 }
 
-array = [1, 2, 3, 4];
+function getComputerSelection() {
+  computerChoicesArray = ["rock", "paper", "scissors"];
 
-console.log(randomArrayIndexValue(array));
+  computerSelection = randomArrayIndexValue(computerChoicesArray);
+  // console.log(computerSelection);
+
+  return computerSelection;
+}
+
+console.log(getComputerSelection());
