@@ -37,30 +37,28 @@ function getPlayerChoice() {
   console.log(playerSelection);
   return playerSelection.toLowerCase();
 }
+let playerScore = 0;
+let computerScore = 0;
 
 function playRound(computerSelection, playerSelection) {
   playerSelection = getPlayerChoice();
   computerSelection = getComputerSelection();
 
-  let playerScore = 0;
-  let computerScore = 0;
   if (playerSelection === computerSelection) {
     console.log("Tie!");
-  } else if (playerSelection === "rock" && computerSelection === "scissors") {
-    playerScore += 1;
-    console.log(`You get a point! Your score is ${playerScore}.`);
-  } else if (playerSelection === "paper" && computerSelection === "rock") {
-    playerScore += 1;
-    console.log(`You get a point! Your score is ${playerScore}.`);
-  } else if (playerSelection === "scissors" && computerSelection === "paper") {
-    playerScore += 1;
-    console.log(`You get a point! Your score is ${playerScore}.`);
-  } else {
-    console.log.apply(
-      `You lose! ${computerSelection} beats ${playerSelection} `
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+  ) {
+    playerscore++;
+    console.log(
+      `You get a win! ${playerSelection} beats ${computerSelection}.`
     );
-    computerScore += 1;
+    console.log(`You get a point!Your score is ${playerScore}.`);
+  } else {
+    computerScore++;
+    console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    console.log(`Computer wins! Computer's score is ${computerScore}`);
   }
-  console.log(`Your score is ${playerScore}`);
-  console.log(`The computer's score is ${computerScore}`);
 }
