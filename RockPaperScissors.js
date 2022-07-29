@@ -28,16 +28,19 @@ function getComputerSelection() {
 function getPlayerChoice() {
   let playerSelection = prompt("Rock, Paper, or Scissors?");
 
+  if (playerSelection) {
+    console.log(playerSelection);
+  } else {
+    return console.log("Player cancelled.");
+  }
+
   while (
     playerSelection.toLowerCase() !== "rock" &&
     playerSelection.toLowerCase() !== "paper" &&
     playerSelection.toLowerCase() !== "scissors"
   ) {
-    playerSelection = prompt(
-      "Type in your selection: Rock, Paper, or Scissors."
-    );
+    playerSelection = prompt("Please type Rock, Paper, or Scissors.");
   }
-  console.log(playerSelection);
   return playerSelection.toLowerCase();
 }
 
@@ -54,12 +57,13 @@ function playRound(computerSelection, playerSelection) {
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     playerScore++;
-    console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
-    console.log(`You get a point! Your score is ${playerScore}.`);
+    console.log(`You win! ${playerSelection} beats ${computerSelection}. \nYou get a point! Your score is ${playerScore}.
+    `);
   } else {
     computerScore++;
-    console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
-    console.log(`Computer gets a point. Computer's score is ${computerScore}`);
+    console.log(
+      `You lose! ${computerSelection} beats ${playerSelection}. \nComputer gets a point. Computer's score is ${computerScore}`
+    );
   }
 }
 
@@ -76,8 +80,10 @@ function winState(playerScore, computerScore) {
 function game() {
   for (let i = 0; i < 5; i++) {
     playRound();
-    console.log(`Your score is ${playerScore}`);
-    console.log(`Computer score is ${computerScore}`);
+    console.log(
+      `Your score is ${playerScore} \nComputer's score is ${computerScore}
+    `
+    );
   }
   winState(playerScore, computerScore);
 }
