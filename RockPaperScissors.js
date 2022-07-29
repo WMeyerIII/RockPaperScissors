@@ -42,8 +42,8 @@ function getPlayerChoice() {
 }
 
 function playRound(computerSelection, playerSelection) {
-  // playerSelection = getPlayerChoice();
-  playerSelection = "rock";
+  playerSelection = getPlayerChoice();
+  // playerSelection = "rock";
   computerSelection = getComputerSelection();
 
   if (playerSelection === computerSelection) {
