@@ -63,12 +63,23 @@ function playRound(computerSelection, playerSelection) {
   }
 }
 
+function winState(playerScore, computerScore) {
+  winner =
+    playerScore > computerScore
+      ? "You win!"
+      : computerScore > playerScore
+      ? "Computer wins!"
+      : "No winner! Tie!";
+  return console.log(winner);
+}
+
 function game() {
   for (let i = 0; i < 5; i++) {
     playRound();
     console.log(playerScore);
     console.log(computerScore);
   }
+  winState(playerScore, computerScore);
 }
 
 game();
