@@ -36,12 +36,8 @@ function getPlayerSelection() {
   return playerSelection;
 }
 
-function playRound(
-  playerSelection,
-  computerSelection,
-  playerScore,
-  computerScore
-) {
+function playRound(playerSelection, computerSelection) {
+  let roundWinner = 1;
   if (playerSelection === computerSelection) {
     console.log("Tie!");
   } else if (
@@ -49,54 +45,59 @@ function playRound(
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
-    playerScore++;
-    console.log(
-      `You win! ${playerSelection} beats ${computerSelection}.\nYou get a point! \nPlayer's score is ${playerScore}. Computer's score is ${computerScore}`
-    );
+    // playerScore++;
+    console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+    // \nYou get a point! \nPlayer's score is ${playerScore}. Computer's score is ${computerScore}
+    roundWinner = 0;
   } else {
-    computerScore++;
-    console.log(
-      `You lose! ${computerSelection} beats ${playerSelection}.\nComputer gets a point.\nPlayer's score is ${playerScore}. Computer's score is ${computerScore}`
-    );
+    // computerScore++;
+    console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    // \nComputer gets a point.\nPlayer's score is ${playerScore}. Computer's score is ${computerScore}
+    // winner = 1
   }
-  return [playerSelection, playerScore, computerScore];
+  // return [playerSelection, playerScore, computerScore];
+  return roundWinner;
 }
 
-function winState(playerScore, computerScore) {
-  winner =
+function winState(score) {
+  playerScore = score[0];
+  computerScore = score[1];
+
+  gameWinner =
     playerScore > computerScore
       ? "You win!"
       : computerScore > playerScore
       ? "Computer wins!"
       : "No winner! Tie!";
-  return console.log(winner);
+  return console.log(gameWinner);
+}
+
+function scoreState(roundWinner, score) {
+  if (roundWinner === 0) {
+    score[0] += 1;
+  } else {
+    score[1] += 1;
+  }
+  console.log(`Player's score is ${score[0]}, Computer's score is ${score[1]}`);
+  return score;
 }
 
 function game() {
-  let playerScore = 0;
-  let computerScore = 0;
+  let score = [0, 0];
 
   for (let i = 0; i < 5; i++) {
     playerSelection = getPlayerSelection();
+    computerSelection = getComputerSelection();
 
     if (!playerSelection) {
-      console.log("You cancelled the game. Boo.");
+      console.log("You cancelled the game. Boooo");
       break;
-    } else {
-      computerSelection = getComputerSelection();
-
-      roundInfo = playRound(
-        playerSelection,
-        computerSelection,
-        playerScore,
-        computerScore
-      );
-
-      playerScore = roundInfo[1];
-      computerScore = roundInfo[2];
     }
+
+    roundWinner = playRound(playerSelection, computerSelection);
+    score = scoreState(roundWinner, score);
   }
-  winState(playerScore, computerScore);
+  winState(score);
 }
 
 game();
