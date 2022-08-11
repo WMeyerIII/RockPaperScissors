@@ -45,17 +45,11 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
-    // playerScore++;
     console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
-    // \nYou get a point! \nPlayer's score is ${playerScore}. Computer's score is ${computerScore}
     roundWinner = 0;
   } else {
-    // computerScore++;
     console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
-    // \nComputer gets a point.\nPlayer's score is ${playerScore}. Computer's score is ${computerScore}
-    // winner = 1
   }
-  // return [playerSelection, playerScore, computerScore];
   return roundWinner;
 }
 
