@@ -57,7 +57,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function winState(score) {
-  playerScore = score[0];
+  playerScore = score.pl;
   computerScore = score[1];
 
   gameWinner =
@@ -70,19 +70,23 @@ function winState(score) {
 }
 
 function scoreState(roundWinner, score) {
+  console.log(score.playerScore);
+
   if (roundWinner === 0) {
-    score[0] += 1;
+    score.playerScore += 1;
   }
 
   if (roundWinner === 1) {
-    score[1] += 1;
+    score.computerScore += 1;
   }
-  console.log(`Player's score is ${score[0]}, Computer's score is ${score[1]}`);
+  console.log(
+    `Player's score is ${score.playerScore}, Computer's score is ${score.computerScore}`
+  );
   return score;
 }
 
 function game() {
-  let score = [0, 0];
+  let score = { playerScore: 0, computerScore: 0 };
 
   for (let i = 0; i < 5; i++) {
     playerSelection = getPlayerSelection();
@@ -95,6 +99,7 @@ function game() {
 
     roundWinner = playRound(playerSelection, computerSelection);
     score = scoreState(roundWinner, score);
+    console.log(score);
   }
   winState(score);
 }
