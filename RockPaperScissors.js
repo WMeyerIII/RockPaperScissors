@@ -7,9 +7,6 @@ Get player choice
 
 */
 
-let playerScore = 0;
-let computerScore = 0;
-
 function randomArrayIndexValue(array) {
   let randomIndex = Math.floor(Math.random() * array.length);
   let randomIndexValue = array[randomIndex];
@@ -17,38 +14,40 @@ function randomArrayIndexValue(array) {
 }
 
 function getComputerSelection() {
-  let computerChoicesArray = ["rock", "paper", "scissors"];
+  let computerSelectionsArray = ["rock", "paper", "scissors"];
 
-  computerSelection = randomArrayIndexValue(computerChoicesArray);
+  computerSelection = randomArrayIndexValue(computerSelectionsArray);
   console.log(`Computer chose: ${computerSelection}`);
 
   return computerSelection;
 }
 
-function getPlayerChoice() {
+function getPlayerSelection() {
   let playerSelection = prompt("Rock, Paper, or Scissors?");
 
   if (playerSelection) {
     console.log(playerSelection);
   } else {
-    return console.log("Player cancelled.");
+    console.log("Player cancelled.");
+    return playerSelection;
   }
 
   while (
-    playerSelection.toLowerCase() !== "rock" &&
-    playerSelection.toLowerCase() !== "paper" &&
-    playerSelection.toLowerCase() !== "scissors"
+    playerSelection !== "rock" &&
+    playerSelection !== "paper" &&
+    playerSelection !== "scissors"
   ) {
     playerSelection = prompt("Please type Rock, Paper, or Scissors.");
   }
-  return playerSelection.toLowerCase();
+  return playerSelection;
 }
 
-function playRound(computerSelection, playerSelection) {
-  playerSelection = getPlayerChoice();
-  // playerSelection = "rock";
-  computerSelection = getComputerSelection();
-
+function playRound(
+  playerSelection,
+  computerSelection,
+  playerScore,
+  computerScore
+) {
   if (playerSelection === computerSelection) {
     console.log("Tie!");
   } else if (
@@ -57,14 +56,16 @@ function playRound(computerSelection, playerSelection) {
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     playerScore++;
-    console.log(`You win! ${playerSelection} beats ${computerSelection}. \nYou get a point! Your score is ${playerScore}.
-    `);
+    console.log(
+      `You win! ${playerSelection} beats ${computerSelection}.\nYou get a point! \nPlayer's score is ${playerScore}. Computer's score is ${computerScore}`
+    );
   } else {
     computerScore++;
     console.log(
-      `You lose! ${computerSelection} beats ${playerSelection}. \nComputer gets a point. Computer's score is ${computerScore}`
+      `You lose! ${computerSelection} beats ${playerSelection}.\nComputer gets a point.\nPlayer's score is ${playerScore}. Computer's score is ${computerScore}`
     );
   }
+  return [playerSelection, playerScore, computerScore];
 }
 
 function winState(playerScore, computerScore) {
@@ -78,12 +79,28 @@ function winState(playerScore, computerScore) {
 }
 
 function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+
   for (let i = 0; i < 5; i++) {
-    playRound();
-    console.log(
-      `Your score is ${playerScore} \nComputer's score is ${computerScore}
-    `
-    );
+    playerSelection = getPlayerSelection();
+
+    if (!playerSelection) {
+      console.log("You cancelled the game. Boo.");
+      break;
+    } else {
+      computerSelection = getComputerSelection();
+
+      roundInfo = playRound(
+        playerSelection,
+        computerSelection,
+        playerScore,
+        computerScore
+      );
+
+      playerScore = roundInfo[1];
+      computerScore = roundInfo[2];
+    }
   }
   winState(playerScore, computerScore);
 }
