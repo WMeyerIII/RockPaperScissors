@@ -35,6 +35,7 @@ paper.addEventListener("click", () =>
 scissors.addEventListener("click", () =>
   playRound((playerSelection = "scissors"), getComputerSelection())
 );
+
 // function getPlayerSelection() {
 //   let playerSelection = "";
 //   const rock = document.getElementById("rock");
