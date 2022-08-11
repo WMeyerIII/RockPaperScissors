@@ -38,6 +38,7 @@ function getPlayerSelection() {
     playerSelection !== "scissors"
   ) {
     playerSelection = prompt("Please type Rock, Paper, or Scissors.");
+    if (!playerSelection) return playerSelection;
   }
   return playerSelection;
 }
