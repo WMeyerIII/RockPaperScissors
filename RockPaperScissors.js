@@ -37,9 +37,11 @@ function getPlayerSelection() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  let roundWinner = 1;
+  let roundWinner = null;
+
   if (playerSelection === computerSelection) {
     console.log("Tie!");
+    roundWinner = -1;
   } else if (
     (playerSelection === "rock" && computerSelection === "scissors") ||
     (playerSelection === "paper" && computerSelection === "rock") ||
@@ -49,6 +51,7 @@ function playRound(playerSelection, computerSelection) {
     roundWinner = 0;
   } else {
     console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    roundWinner = 1;
   }
   return roundWinner;
 }
@@ -69,7 +72,9 @@ function winState(score) {
 function scoreState(roundWinner, score) {
   if (roundWinner === 0) {
     score[0] += 1;
-  } else {
+  }
+
+  if (roundWinner === 1) {
     score[1] += 1;
   }
   console.log(`Player's score is ${score[0]}, Computer's score is ${score[1]}`);
