@@ -1,9 +1,6 @@
 /*
 use underscores instead of camelcase next time for variables?
 
-Create Random picker for computer
-Get computer choice
-Get player choice
 
 */
 
@@ -22,19 +19,40 @@ function getComputerSelection() {
   return computerSelection;
 }
 
-function getPlayerSelection() {
-  let playerSelection = "";
+let playerSelection = "";
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
 
-  while (
-    playerSelection !== "rock" &&
-    playerSelection !== "paper" &&
-    playerSelection !== "scissors"
-  ) {
-    playerSelection = prompt("Please type Rock, Paper, or Scissors.");
-    if (!playerSelection) break;
-  }
-  return playerSelection;
-}
+rock.addEventListener("click", () =>
+  playRound((playerSelection = "rock"), getComputerSelection())
+);
+
+paper.addEventListener("click", () =>
+  playRound((playerSelection = "paper"), getComputerSelection())
+);
+
+scissors.addEventListener("click", () =>
+  playRound((playerSelection = "scissors"), getComputerSelection())
+);
+// function getPlayerSelection() {
+//   let playerSelection = "";
+//   const rock = document.getElementById("rock");
+//   const paper = document.getElementById("paper");
+//   const scissors = document.getElementById("scissors");
+
+//   rock.addEventListener("click", () => (playerSelection = "rock"));
+
+//   // while (
+//   //   playerSelection !== "rock" &&
+//   //   playerSelection !== "paper" &&
+//   //   playerSelection !== "scissors"
+//   // ) {
+//   //   playerSelection = prompt("Please type Rock, Paper, or Scissors.");
+//   //   if (!playerSelection) break;
+//   // }
+//   return playerSelection;
+// }
 
 function playRound(playerSelection, computerSelection) {
   let roundWinner = null;
@@ -102,4 +120,4 @@ function game() {
   winState(score);
 }
 
-game();
+// game();
