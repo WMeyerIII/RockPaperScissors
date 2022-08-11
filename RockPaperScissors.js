@@ -57,8 +57,9 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function winState(score) {
-  playerScore = score.pl;
-  computerScore = score[1];
+  // This isn't oop, is it? Changing the object/parameters means I have to come back here and change it, isn't isolated. idk
+  playerScore = score.playerScore;
+  computerScore = score.computerScore;
 
   gameWinner =
     playerScore > computerScore
