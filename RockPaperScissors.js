@@ -71,8 +71,6 @@ function winState(score) {
 }
 
 function scoreState(roundWinner, score) {
-  console.log(score.playerScore);
-
   if (roundWinner === 0) {
     score.playerScore += 1;
   }
@@ -100,7 +98,6 @@ function game() {
 
     roundWinner = playRound(playerSelection, computerSelection);
     score = scoreState(roundWinner, score);
-    console.log(score);
   }
   winState(score);
 }
