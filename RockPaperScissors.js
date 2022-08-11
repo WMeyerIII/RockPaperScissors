@@ -23,14 +23,7 @@ function getComputerSelection() {
 }
 
 function getPlayerSelection() {
-  let playerSelection = prompt("Rock, Paper, or Scissors?");
-
-  if (playerSelection) {
-    console.log(playerSelection);
-  } else {
-    console.log("Player cancelled.");
-    return playerSelection;
-  }
+  let playerSelection = "";
 
   while (
     playerSelection !== "rock" &&
@@ -38,7 +31,7 @@ function getPlayerSelection() {
     playerSelection !== "scissors"
   ) {
     playerSelection = prompt("Please type Rock, Paper, or Scissors.");
-    if (!playerSelection) return playerSelection;
+    if (!playerSelection) break;
   }
   return playerSelection;
 }
